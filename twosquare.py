@@ -1,3 +1,5 @@
+import wordninja
+
 class Matrix:
     def __init__(self, data):
         self.data = data
@@ -42,6 +44,7 @@ lower = [
 upper_matrix = Matrix(upper)
 lower_matrix = Matrix(lower)
 
+# cyphertext
 input = "KTOUOFKERKVZFARSWFYUCEABLUBEPCNARSEPNRTANCBUWHDOWFDUZMSAXPYUOJLCDIGRPUFCABVMWFBUIOBEMNWLLHMTADVRICROUVNTTBABMTVMWFBUIOYUMYKKIGMTAXONTAOPZMSURUCJMTADVRICROUVNTTBABPULAVMZAXTDIGRPUJSFCZAOCSURVVSGCOTHCFCPBDPYUOJOSKCLESBEKSPOLJGADOUKCLESBDIGRPUJHOSKCDFIFYUZAXTVMYPCRZKGRPUJXWFISISABKARRDEZKIUVUPBNSPAABNCDW"
 
 pairs = split_into_pairs(input)
@@ -52,10 +55,8 @@ for pair in pairs:
     first_char = pair[0]
     second_char = pair[1]
 
-    # Find coordinates in the upper matrix
     upper_coordinates = upper_matrix.get_coordinates(first_char)
 
-    # Find coordinates in the lower matrix for the second element in the pair
     lower_coordinates = lower_matrix.get_coordinates(second_char)
 
     upper_decyphered_coordinates = upper_coordinates[0], lower_coordinates[1]
@@ -66,4 +67,12 @@ for pair in pairs:
 
     decyphered_text += upper_element + lower_element
 
-print(decyphered_text)
+# plaintext felbontasa szavakra
+decyphered_text = wordninja.split(decyphered_text)
+
+text_with_spaces = ''
+for word in decyphered_text:
+    text_with_spaces += ' '
+    text_with_spaces += word
+
+print(text_with_spaces)
